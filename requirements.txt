@@ -1,6 +1,7 @@
+redis==7.4.0
 smcore==1.1.2
-TotalSegmentator==2.0.0
-redis
-nnunetv2
-batchgenerators
-acvl-utils
+TotalSegmentator==2.13.0
+nnunetv2==2.7.0
+batchgenerators==0.25.2
+batchgeneratorsv2==0.3.2
+acvl-utils==0.2.6
