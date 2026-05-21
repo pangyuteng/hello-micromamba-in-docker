@@ -20,6 +20,7 @@ micromamba env export --name shadow --explicit > env.lock
 
 if you need to create new user
 "--no-log-init" crucial to avoid docker build hanging for large uid
+https://github.com/moby/moby/issues/5419
 
 https://micromamba-docker.readthedocs.io/en/latest/advanced_usage.html#changing-the-user-id-or-name
 

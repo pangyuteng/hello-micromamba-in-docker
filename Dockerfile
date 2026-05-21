@@ -50,6 +50,8 @@ RUN ln -s /opt/conda/envs/shadow /opt/conda/envs/totalseg
 USER root
 RUN --mount=type=secret,id=hftoken,env=HF_TOKEN echo ${HF_TOKEN}
 RUN --mount=type=secret,id=hftxt echo $(cat /run/secrets/hftxt)
+RUN --mount=type=secret,id=hftxt,env=HF_TOKEN echo $HF_TOKEN
+
 
 USER $MAMBA_USER
 ENV ENV_NAME=shadow
