@@ -9,14 +9,21 @@ FROM python:3.12-bullseye AS base
 
 USER root
 
+
 RUN apt-get update && apt-get install git vim jq curl procps -yq
 
 ARG MAMBA_USER=newuser
+ARG MAMBA_GROUP=newgroup
 ARG MAMBA_USER_ID=2002
 ARG MAMBA_USER_GID=2002
 ENV MAMBA_USER=$MAMBA_USER
 ENV MAMBA_ROOT_PREFIX="/opt/conda"
 ENV MAMBA_EXE="/bin/micromamba"
+
+# # if you have huuuuuge uid number, use below to avoid docker build hanging and making 100GB container/logs.
+# RUN groupadd -g $MAMBA_USER_GID $MAMBA_GROUP && \
+#     useradd -l -u $MAMBA_USER_ID -g $MAMBA_USER_GID $MAMBA_USER
+
 
 COPY --from=micromamba "$MAMBA_EXE" "$MAMBA_EXE"
 COPY --from=micromamba /usr/local/bin/_activate_current_env.sh /usr/local/bin/_activate_current_env.sh
