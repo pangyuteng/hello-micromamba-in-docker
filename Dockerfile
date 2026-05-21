@@ -37,14 +37,13 @@ ENTRYPOINT ["/usr/local/bin/_entrypoint.sh"]
 WORKDIR /opt
 
 COPY --chown=$MAMBA_USER env.lock /tmp/env.lock 
-RUN micromamba install --name base --yes --file /tmp/env.lock \
-    && micromamba clean --all --yes
+RUN micromamba create --name shadow --yes --file /tmp/env.lock && \
+    micromamba clean --all --yes
 
 COPY --chown=$MAMBA_USER requirements.txt /tmp/requirements.txt
-RUN micromamba run -name shadow pip install -r /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
 
-# hack since downstream simplemind wanted different environment names.
-USER root
+# # hack since downstream simplemind wanted different environment names.
 RUN ln -s /opt/conda/envs/shadow /opt/conda/envs/nnunet
 RUN ln -s /opt/conda/envs/shadow /opt/conda/envs/totalseg
 

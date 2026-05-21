@@ -23,6 +23,7 @@ https://micromamba-docker.readthedocs.io/en/latest/advanced_usage.html#using-a-l
 # micromamba env export --name shadow --explicit > env.lock
 # COPY --chown=$MAMBA_USER:$MAMBA_USER mamba/env.lock /tmp/env.lock
 # RUN micromamba install --name base --yes --file /tmp/env.lock \
+# or??   micromamba create
 #     && micromamba clean --all --yes
 
 
