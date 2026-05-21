@@ -6,8 +6,14 @@ requiremnt; custom uid:gid with micromamba in docker
 ```
 
 
+export HF_TOKEN=ABCCCCCCCC
+docker build \
+--secret id=hftxt,src=.hftoken.txt \
+--secret id=hftoken,env=HF_TOKEN \
+-t ok .
 
-docker build -t ok .
+
+
 mkdir ok && chmod 777 ok
 docker run -it -u 2002:200 -w /opt/workdir -v ./ok:/opt/workdir ok bash
 micromamba env export --name shadow --explicit > env.lock
