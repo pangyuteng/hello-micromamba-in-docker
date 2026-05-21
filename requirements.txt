@@ -1,0 +1,6 @@
+smcore==1.1.2
+TotalSegmentator==2.0.0
+redis
+nnunetv2
+batchgenerators
+acvl-utils
